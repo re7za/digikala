@@ -1,0 +1,22 @@
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1280px;
+
+.container {
+  @media screen and (min-width: $lg) {
+    display: grid;
+    grid-gap: 24px;
+    grid-template-columns: 1fr 4fr;
+  }
+  .section {
+    background-color: #88e;
+  }
+  .aside {
+    background-color: #e88;
+    display: none;
+    @media screen and (min-width: $lg) {
+      display: block;
+    }
+  }
+}
