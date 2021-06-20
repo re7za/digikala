@@ -1,0 +1,13 @@
+.ali {
+  background: #000;
+  color: red;
+  &:hover {
+    color: blue;
+  }
+  .akbar {
+    background: green;
+  }
+  .asghar {
+    font-size: large;
+  }
+}
