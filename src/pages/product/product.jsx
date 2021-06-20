@@ -1,12 +1,15 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import { connect } from "react-redux";
+
+import { addProductToCarts } from "../../redux/actions/carts.actions";
 
 import { Badge } from "../../lib/badge";
 import { Button } from "../../lib/‌‌‌button";
 import { products } from "../../services/mock";
 import style from "../../assets/styles/pages/product/style.module.scss";
 
-export const Product = () => {
+const Product = ({ dispatch, cartsIds }) => {
   const { id } = useParams();
   const productId = Number(id);
 
@@ -23,10 +26,14 @@ export const Product = () => {
   const discount = () =>
     Math.round(100 - (price.selling_price / price.rrp_price) * 100);
 
-  const handleAddToCarts = () => {};
+  const handleAddToCarts = () => {
+    dispatch(addProductToCarts(productId));
+  };
 
   return (
     <div>
+      {console.log({ cartsIds })}
+      <Link to={`/carts`}>سبد خرید</Link>
       {product ? (
         <div className={style.product}>
           <div className={style.imageBox}>
@@ -84,3 +91,11 @@ export const Product = () => {
     </div>
   );
 };
+
+const mapStateToProps = (state) => {
+  return {
+    cartsIds: state.cartsReducer.cartsIds,
+  };
+};
+
+export default connect(mapStateToProps)(Product);

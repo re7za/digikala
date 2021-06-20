@@ -9,10 +9,10 @@ const instance = axios.create({
 
 // const currentUser = authenticationService.currentUserValue;
 
-instance.interceptors.request.use(function (config) {
+instance.interceptors.response.use(function (config) {
   // config.headers["ApplicationId"] = "sadra.neel.ir";
   // if (currentUser?.token) {
-  config.headers["Authorization"] = `Bearer ${token}`;
+  config.headers["token"] = token;
   // }
   config.headers["Content-Type"] = "application/json";
   return config;

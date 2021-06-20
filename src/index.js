@@ -1,8 +1,16 @@
 import React from "react";
 import { render } from "react-dom";
-
-import "./public/global.css";
+import { Provider } from "react-redux";
 
 import App from "./App";
+import { configureStore } from "./redux/store";
+import "./public/global.css";
 
-render(<App />, document.getElementById("app"));
+const store = configureStore();
+
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("app")
+);

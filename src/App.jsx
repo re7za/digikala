@@ -7,8 +7,8 @@ import { Router, Route, Redirect } from "react-router-dom";
 import { history } from "./helpers";
 
 import { Products } from "./pages/products";
-import { Product } from "./pages/product";
-import { Carts } from "./pages/carts";
+import Product from "./pages/product";
+import Carts from "./pages/carts";
 import style from "./assets/styles/app.module.scss";
 
 const App = () => {

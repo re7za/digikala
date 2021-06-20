@@ -1,18 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-import { Button } from "../../lib/‌‌‌button";
+import { removeProductFromCarts } from "../../redux/actions/carts.actions";
 import PropTypes from "prop-types";
 
 import style from "../../assets/styles/lib/cart/style.module.scss";
 
-export const Cart = (props) => {
-  const { id, title, images, status, price } = props;
+const Cart = (props) => {
+  const { dispatch, cartsIds, id, title, images, status, price } = props;
 
   const discount = () => price.rrp_price - price.selling_price;
 
+  const handleRemoveFromCarts = () => {
+    dispatch(removeProductFromCarts(id));
+  };
+
   return (
     <div className={style.product}>
+      {console.log({ cartsIds })}
       <Link to={`/product-details/${id}`} className={style.imageBox}>
         <img className={style.image} src={images.main} alt="کالا" />
       </Link>
@@ -47,7 +53,9 @@ export const Cart = (props) => {
             <span> تــــومان</span>
           </div>
         </div>
-        <button className={style.deleteBtn}>حذف</button>
+        <button className={style.deleteBtn} onClick={handleRemoveFromCarts}>
+          حذف
+        </button>
       </div>
     </div>
   );
@@ -70,3 +78,11 @@ Cart.defaultProps = {
     rrp_price: 0,
   },
 };
+
+const mapStateToProps = (state) => {
+  return {
+    cartsIds: state.cartsReducer.cartsIds,
+  };
+};
+
+export default connect(mapStateToProps)(Cart);

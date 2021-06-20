@@ -2,7 +2,7 @@ import axios from "../helpers/http-client";
 
 const getProducts = () => {
   return axios
-    .get("/")
+    .get("/search")
     .then((res) => {
       console.log(res);
     })
