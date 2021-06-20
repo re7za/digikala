@@ -23,6 +23,8 @@ export const Product = () => {
   const discount = () =>
     Math.round(100 - (price.selling_price / price.rrp_price) * 100);
 
+  const handleAddToCarts = () => {};
+
   return (
     <div>
       {product ? (
@@ -68,7 +70,7 @@ export const Product = () => {
               )}
             </div>
             <div>
-              <Button>
+              <Button onClick={handleAddToCarts}>
                 {status === "marketable"
                   ? "موجود شد به من اطلاع بده"
                   : "اضافه به سبد خرید"}

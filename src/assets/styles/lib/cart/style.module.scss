@@ -1,0 +1,80 @@
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1280px;
+
+.product {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 24px;
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  height: 100%;
+  @media screen and (min-width: $md) {
+    flex-direction: row;
+    padding: 0px 24px;
+  }
+  .imageBox {
+    display: flex;
+    justify-content: center;
+    .image {
+      width: 140px;
+      height: auto;
+      object-fit: contain;
+    }
+  }
+  .details {
+    display: flex;
+    flex-direction: column;
+    @media screen and (min-width: $md) {
+      padding: 16px;
+    }
+    .title {
+      font-size: 1rem;
+      color: #000c;
+      font-weight: 500;
+      margin: 0;
+      margin-bottom: 8px;
+    }
+    .status {
+      margin: 8px 0px;
+      .statusAvailable {
+        color: deepskyblue;
+      }
+      .StatusUnavailable {
+        color: #ef394e;
+      }
+    }
+    .price {
+      margin: 8px 0px;
+      display: flex;
+      flex-grow: 1;
+      flex-direction: column;
+      justify-content: flex-end;
+      .sellingPriceBox {
+        .sellingPrice {
+          font-size: 1.2rem;
+        }
+      }
+      .rrpPrice {
+        font-size: 0.75rem;
+        color: #ef394e;
+      }
+    }
+    .deleteBtn {
+      padding: 4px 8px;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      transition: 200ms;
+      width: max-content;
+      &:hover {
+        color: #000a;
+      }
+      &:active {
+        color: #000e;
+      }
+    }
+  }
+}
