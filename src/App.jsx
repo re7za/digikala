@@ -9,10 +9,11 @@ import { history } from "./helpers";
 import { Products } from "./pages/products";
 import { Product } from "./pages/product";
 import { Cart } from "./pages/cart";
+import style from "./assets/styles/app.module.scss";
 
 const App = () => {
   return (
-    <div>
+    <div className={style.root}>
       <Router history={history}>
         <Route
           exact

@@ -15,12 +15,7 @@ export const ProductCard = (props) => {
     <Link to={`/product-details/${id}`}>
       <div className={style.card}>
         <div className={style.imageBox}>
-          <img
-            className={style.image}
-            //   style={{ width: "150px", height: "150px", objectFit: "contain" }}
-            src={images.main}
-            alt="کالا"
-          />
+          <img className={style.image} src={images.main} alt="کالا" />
         </div>
         <div className={style.info}>
           <div className={style.title}>{title}</div>

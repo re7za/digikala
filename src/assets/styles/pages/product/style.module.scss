@@ -1,6 +1,97 @@
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1280px;
+
 .product {
-  padding: 24px;
-  display: "flex";
   background-color: #fff;
   border-radius: 4px;
+  padding: 24px;
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  @media screen and (min-width: $md) {
+    flex-direction: row;
+  }
+  .imageBox {
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    @media screen and (min-width: $md) {
+      padding: 24px;
+    }
+    .image {
+      width: 200px;
+      height: auto;
+      object-fit: contain;
+      @media screen and (min-width: $sm) {
+        width: 240px;
+      }
+      @media screen and (min-width: $lg) {
+        width: 330px;
+      }
+    }
+  }
+  .details {
+    display: flex;
+    flex-direction: column;
+    @media screen and (min-width: $sm) {
+      padding: 16px;
+    }
+    .title {
+      font-size: 1.2rem;
+      color: #000c;
+      font-weight: 500;
+    }
+    .rowInMobile {
+      display: flex;
+      column-gap: 40px;
+      @media screen and (min-width: $sm) {
+        display: block;
+      }
+      .rating {
+        margin: 16px 0px;
+        .count {
+          color: #0008;
+        }
+        .rate {
+          color: #000c;
+        }
+        .star {
+          color: orange;
+          font-size: 1.1rem;
+        }
+      }
+      .status {
+        margin: 16px 0px;
+        .statusAvailable {
+          color: deepskyblue;
+        }
+        .StatusUnavailable {
+          color: #ef394e;
+        }
+      }
+    }
+    .price {
+      margin: 16px 0px;
+      display: flex;
+      flex-grow: 1;
+      flex-direction: column;
+      justify-content: flex-end;
+      .sellingPriceBox {
+        .sellingPrice {
+          font-size: 1.2rem;
+        }
+      }
+      .rrpPrice {
+        color: #999;
+        font-size: 0.85rem;
+        text-decoration: line-through;
+        margin-left: 4px;
+        @media screen and (min-width: $sm) {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
 }

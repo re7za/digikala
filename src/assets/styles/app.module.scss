@@ -1,0 +1,14 @@
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1280px;
+
+.root {
+  padding: 0px 8px;
+  @media screen and (min-width: $md) {
+    padding: 0px 24px;
+  }
+  @media screen and (min-width: $xl) {
+    padding: 0px 104px;
+  }
+}
