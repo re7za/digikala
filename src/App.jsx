@@ -26,7 +26,7 @@ const App = () => {
           )}
         />
         <Route path="/products-list" component={Products} />
-        <Route path="/product-details" component={Product} />
+        <Route path="/product-details/:id" component={Product} />
         <Route path="/cart" component={Cart} />
       </Router>
     </div>

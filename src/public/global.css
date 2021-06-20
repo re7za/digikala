@@ -20,12 +20,6 @@ body {
   background-color: #f0f0ff;
 }
 
-@media screen and (min-width: 768px) {
-  body {
-    font-size: 14px;
-  }
-}
-
 body,
 button,
 input,
@@ -40,4 +34,14 @@ tr,
 a,
 ::placeholder {
   font-family: IranYekan;
+}
+
+a {
+  text-decoration: none;
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    font-size: 14px;
+  }
 }

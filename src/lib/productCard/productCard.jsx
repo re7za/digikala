@@ -1,48 +1,51 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import { Badge } from "../badge";
 import style from "../../assets/styles/lib/productCard/style.module.scss";
 
 export const ProductCard = (props) => {
-  const { title, images, price } = props;
+  const { id, title, images, price } = props;
 
-  const calcDiscount = () =>
+  const discount = () =>
     Math.round(100 - (price.selling_price / price.rrp_price) * 100);
 
   return (
-    <div className={style.card}>
-      <div className={style.imageBox}>
-        <img
-          className={style.image}
-          //   style={{ width: "150px", height: "150px", objectFit: "contain" }}
-          src={images.main}
-          alt="کالا"
-        />
-      </div>
-      <div className={style.info}>
-        <div className={style.title}>{title}</div>
-        {price.rrp_price && (
-          <div>
-            <Badge color="red">{calcDiscount()}%</Badge>
-            <span className={style.rrpPrice}>
-              {price.rrp_price.toLocaleString("en-US")}
+    <Link to={`/product-details/${id}`}>
+      <div className={style.card}>
+        <div className={style.imageBox}>
+          <img
+            className={style.image}
+            //   style={{ width: "150px", height: "150px", objectFit: "contain" }}
+            src={images.main}
+            alt="کالا"
+          />
+        </div>
+        <div className={style.info}>
+          <div className={style.title}>{title}</div>
+          {price.rrp_price && (
+            <div>
+              <Badge color="red">{discount()}%</Badge>
+              <span className={style.rrpPrice}>
+                {price.rrp_price.toLocaleString("en-US")}
+              </span>
+            </div>
+          )}
+          <div className={style.sellingPriceBox}>
+            <span className={style.sellingPrice}>
+              {price.selling_price.toLocaleString("en-US")}
             </span>
+            <span> تــــومان</span>
           </div>
-        )}
-        <div className={style.sellingPriceBox}>
-          <span className={style.sellingPrice}>
-            {price.selling_price.toLocaleString("en-US")}
-          </span>
-          <span> تــــومان</span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 
 ProductCard.propTypes = {
-  //   id: PropTypes.number,
+  id: PropTypes.number,
   title: PropTypes.string.isRequired,
   //   rating: PropTypes.object,
   //   status: PropTypes.string,
