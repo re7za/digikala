@@ -9,7 +9,9 @@ import { Button } from "../../lib/‌‌‌button";
 import { products } from "../../services/mock";
 import style from "../../assets/styles/pages/product/style.module.scss";
 
-const Product = ({ dispatch, cartsIds }) => {
+const Product = (props) => {
+  const { dispatch, cartsIds } = props;
+
   const { id } = useParams();
   const productId = Number(id);
 
@@ -22,17 +24,31 @@ const Product = ({ dispatch, cartsIds }) => {
   }
 
   const { title, images, rating, status, price } = product;
+  const isCartExistInCarts = cartsIds.includes(productId);
 
   const discount = () =>
     Math.round(100 - (price.selling_price / price.rrp_price) * 100);
 
+  const addButtonLabel = () => {
+    if (isCartExistInCarts) {
+      return "به سبد خرید اضافه شد";
+    }
+    if (status === "marketable") {
+      return "افزودن به سبد خرید";
+    }
+    return "موجود شد به من اطلاع بده";
+  };
+
   const handleAddToCarts = () => {
-    dispatch(addProductToCarts(productId));
+    if (status !== "marketable") {
+      console.log("Handle alert in a real project");
+      return;
+    }
+    if (!isCartExistInCarts) dispatch(addProductToCarts(productId));
   };
 
   return (
     <div>
-      {console.log({ cartsIds })}
       <Link to={`/carts`}>سبد خرید</Link>
       {product ? (
         <div className={style.product}>
@@ -77,10 +93,8 @@ const Product = ({ dispatch, cartsIds }) => {
               )}
             </div>
             <div>
-              <Button onClick={handleAddToCarts}>
-                {status === "marketable"
-                  ? "موجود شد به من اطلاع بده"
-                  : "اضافه به سبد خرید"}
+              <Button disabled={isCartExistInCarts} onClick={handleAddToCarts}>
+                {addButtonLabel()}
               </Button>
             </div>
           </div>
