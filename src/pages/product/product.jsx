@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -52,7 +52,6 @@ const Product = (props) => {
 
   return (
     <div>
-      <Link to={`/carts`}>سبد خرید</Link>
       {product ? (
         <div className={style.product}>
           <div className={style.imageBox}>

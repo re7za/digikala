@@ -52,7 +52,7 @@ const Cart = (props) => {
             <span> تــــومان</span>
           </div>
         </div>
-        <button className={style.deleteBtn} onClick={handleRemoveFromCarts}>
+        <button className={style.removeBtn} onClick={handleRemoveFromCarts}>
           حذف
         </button>
       </div>
