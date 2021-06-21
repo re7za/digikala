@@ -1,16 +1,15 @@
-import "@fontsource/roboto";
-import "./assets/styles/general.scss";
-
 import React from "react";
 import { Router, Route, Redirect } from "react-router-dom";
 
-import { history } from "./helpers";
-
 import Header from "./components/header";
-import { Products } from "./pages/products";
 import Product from "./pages/product";
 import Carts from "./pages/carts";
+import { history } from "./helpers";
+import { Products } from "./pages/products";
+
 import style from "./assets/styles/app.module.scss";
+
+import "@fontsource/roboto";
 
 const App = () => {
   return (
