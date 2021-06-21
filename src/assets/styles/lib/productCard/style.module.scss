@@ -17,11 +17,11 @@
     column-gap: 0;
   }
   .imageBox {
-    padding: 12px 8px;
+    padding: 16px 8px 12px;
     display: flex;
     justify-content: center;
     @media screen and (min-width: $sm) {
-      padding: 18px 0px;
+      padding: 24px 0px 18px;
     }
     .image {
       width: 110px;
