@@ -9,7 +9,7 @@ const instance = axios.create({
 
 // const currentUser = authenticationService.currentUserValue;
 
-instance.interceptors.response.use(function (config) {
+instance.interceptors.request.use(function (config) {
   // config.headers["ApplicationId"] = "sadra.neel.ir";
   // if (currentUser?.token) {
   config.headers["token"] = token;
