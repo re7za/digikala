@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
@@ -15,11 +16,13 @@ const TinyCart = (props) => {
 
   return (
     <div className={style.tinyCart}>
-      <div className={style.imageBox}>
+      <Link to={`/product-details/${id}`} className={style.imageBox}>
         <img className={style.image} src={imageUrl} alt="کالا" />
-      </div>
+      </Link>
       <div className={style.details}>
-        <div className={style.title}>{title}</div>
+        <Link to={`/product-details/${id}`} className={style.title}>
+          {title}
+        </Link>
         <div className={style.secondRow}>
           <div className={style.quantity}>2 عدد</div>
           <button className={style.removeBtn} onClick={handleRemoveFromCarts}>
