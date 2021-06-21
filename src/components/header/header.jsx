@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import CartsModal from "../cartsModal";
 import SearchInput from "../../lib/searchInput";
 import style from "../../assets/styles/components/header/style.module.scss";
 
 const Header = () => {
+  const location = useLocation();
+  const renderCartsModal = !location.pathname.includes("/carts");
+
   const [searchVal, setSearchVal] = useState("");
 
   const handleonChange = (newVal) => {
@@ -28,9 +31,11 @@ const Header = () => {
           />
         </div>
       </div>
-      <div>
-        <CartsModal />
-      </div>
+      {renderCartsModal && (
+        <div>
+          <CartsModal />
+        </div>
+      )}
     </div>
   );
 };
