@@ -14,8 +14,10 @@ const BoX_OPEN_DELAY = 200;
 const BoX_CLOSE_DELAY = 800;
 
 const CartsModal = (props) => {
-  const { cartsIds } = props;
-  const carts = products.filter((product) => cartsIds.includes(product.id));
+  const { cartsInfo } = props;
+  const carts = products.filter((product) =>
+    cartsInfo.find((cart) => Number(cart.id) === Number(product.id))
+  );
 
   const [boxHoverTimeout, setBoxHoverTimeout] = useState();
   const [boxLeaveTimeout, setBoxLeaveTimeout] = useState();
@@ -56,12 +58,12 @@ const CartsModal = (props) => {
     >
       <Link to="/carts" className={style.cartsLink}>
         <FontAwesomeIcon icon={faShoppingCart} />
+        {carts.length !== 0 && (
+          <span className={style.cartsLengthBadge}>
+            <Badge color="red">{carts.length}</Badge>
+          </span>
+        )}
       </Link>
-      {carts.length !== 0 && (
-        <span className={style.cartsLengthBadge}>
-          <Badge color="red">{carts.length}</Badge>
-        </span>
-      )}
       {isBoxOpen && carts.length !== 0 && (
         <div className={style.cartsBox}>
           <div className={style.cartsBoxFirstRow}>
@@ -92,7 +94,7 @@ const CartsModal = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    cartsIds: state.cartsReducer.cartsIds,
+    cartsInfo: state.cartsReducer.cartsInfo,
   };
 };
 

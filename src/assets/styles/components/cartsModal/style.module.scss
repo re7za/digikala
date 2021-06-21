@@ -4,17 +4,18 @@
     color: #0006;
     font-size: 20px;
     padding: 8px;
+    position: relative;
     &:hover {
       color: #0004;
     }
     &:active {
       color: #0006;
     }
-  }
-  .cartsLengthBadge {
-    position: absolute;
-    top: 5px;
-    left: 22px;
+    .cartsLengthBadge {
+      position: absolute;
+      top: 13px;
+      left: 22px;
+    }
   }
   .cartsBox {
     position: absolute;
