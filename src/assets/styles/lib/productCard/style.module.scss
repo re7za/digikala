@@ -41,11 +41,7 @@ $xl: 1280px;
     }
   }
   .info {
-    // padding: 8px;
     flex-grow: 1;
-    @media screen and (min-width: $sm) {
-      // padding: 8px 24px;
-    }
     .title {
       font-size: 0.82rem;
       color: #555;

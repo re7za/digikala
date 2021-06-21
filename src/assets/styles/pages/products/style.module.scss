@@ -10,10 +10,10 @@ $xl: 1280px;
     grid-template-columns: 1fr 4fr;
   }
   .section {
-    background-color: #88e;
+    background-color: #fff;
   }
   .aside {
-    background-color: #e88;
+    background-color: #fff;
     display: none;
     @media screen and (min-width: $lg) {
       display: block;
