@@ -16,17 +16,22 @@ const Carts = ({ dispatch, cartsIds }) => {
 
   return (
     <div className={style.carts}>
-      {console.log({ cartsIds })}
-      <button className={style.deleteAllBtn} onClick={handleDeleteAllCarts}>
-        پاک کردن همه
-      </button>
-      <div className={style.grid}>
-        {carts.map((product) => (
-          <div key={product.id}>
-            <Cart {...product} />
+      {carts.length ? (
+        <>
+          <button className={style.deleteAllBtn} onClick={handleDeleteAllCarts}>
+            پاک کردن همه
+          </button>
+          <div className={style.grid}>
+            {carts.map((product) => (
+              <div key={product.id}>
+                <Cart {...product} />
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </>
+      ) : (
+        <div>Empty list!</div>
+      )}
     </div>
   );
 };

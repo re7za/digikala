@@ -18,7 +18,6 @@ const Cart = (props) => {
 
   return (
     <div className={style.product}>
-      {console.log({ cartsIds })}
       <Link to={`/product-details/${id}`} className={style.imageBox}>
         <img className={style.image} src={images.main} alt="کالا" />
       </Link>
