@@ -6,6 +6,7 @@ import { Router, Route, Redirect } from "react-router-dom";
 
 import { history } from "./helpers";
 
+import Header from "./components/header";
 import { Products } from "./pages/products";
 import Product from "./pages/product";
 import Carts from "./pages/carts";
@@ -13,8 +14,9 @@ import style from "./assets/styles/app.module.scss";
 
 const App = () => {
   return (
-    <div className={style.root}>
-      <Router history={history}>
+    <Router history={history}>
+      <Header />
+      <div className={style.root}>
         <Route
           exact
           path="/"
@@ -29,8 +31,8 @@ const App = () => {
         <Route path="/products-list" component={Products} />
         <Route path="/product-details/:id" component={Product} />
         <Route path="/carts" component={Carts} />
-      </Router>
-    </div>
+      </div>
+    </Router>
   );
 };
 
