@@ -7,7 +7,7 @@ export const Badge = ({ children }) => {
   return <span className={style.badge}>{children}</span>;
 };
 
-Badge.prototype = {
+Badge.propTypes = {
   children: PropTypes.any,
   //   color: PropTypes.oneOf(["green", "red", "blue", "orange"]),
 };
