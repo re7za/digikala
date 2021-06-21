@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 
 import { addProductToCarts } from "../../redux/actions/carts.actions";
+import { handleTextLength } from "../../helpers/textUtils";
 import { Badge } from "../badge";
 import { QuickAddButton } from "../quickAddButton";
 import style from "../../assets/styles/lib/productCard/style.module.scss";
@@ -32,7 +33,7 @@ const ProductCard = (props) => {
       </Link>
       <div className={style.info}>
         <Link to={`/product-details/${id}`}>
-          <div className={style.title}>{title}</div>
+          <div className={style.title}>{handleTextLength(title, 40)}</div>
         </Link>
         <div className={style.purchase}>
           <Link to={`/product-details/${id}`} className={style.price}>

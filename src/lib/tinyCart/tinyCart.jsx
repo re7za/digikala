@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
+import { handleTextLength } from "../../helpers/textUtils";
 import { removeProductFromCarts } from "../../redux/actions/carts.actions";
 import style from "../../assets/styles/lib/tinyCart/style.module.scss";
 
@@ -22,7 +23,7 @@ const TinyCart = (props) => {
       </Link>
       <div className={style.details}>
         <Link to={`/product-details/${id}`} className={style.title}>
-          {title}
+          {handleTextLength(title, 40)}
         </Link>
         <div className={style.secondRow}>
           <div className={style.quantity}>{cart?.quantity} عدد</div>
