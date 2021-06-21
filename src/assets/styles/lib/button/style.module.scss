@@ -13,3 +13,14 @@
     background-color: #ef394e;
   }
 }
+
+.disabled {
+  cursor: default;
+  background-color: #888888;
+  &:hover {
+    background-color: #888888;
+  }
+  &:active {
+    background-color: #888888;
+  }
+}
