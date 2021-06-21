@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-
+import CartsModal from "../cartsModal";
 import SearchInput from "../../lib/searchInput";
 import style from "../../assets/styles/components/header/style.module.scss";
 
 const Header = () => {
-  // eslint-disable-next-line no-unused-vars
   const [searchVal, setSearchVal] = useState("");
 
   const handleonChange = (newVal) => {
@@ -31,9 +28,9 @@ const Header = () => {
           />
         </div>
       </div>
-      <Link to="/carts" className={style.cartsLink}>
-        <FontAwesomeIcon icon={faShoppingCart} />
-      </Link>
+      <div>
+        <CartsModal />
+      </div>
     </div>
   );
 };
