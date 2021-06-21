@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -6,46 +6,50 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 import { addProductToCarts } from "../../redux/actions/carts.actions";
+import { productsServices } from "../../services/products.service";
 
 import { Badge } from "../../lib/badge";
 import { Button } from "../../lib/‌‌‌button";
-import { products } from "../../services/mock";
 import style from "../../assets/styles/pages/product/style.module.scss";
 
 const Product = (props) => {
   const { dispatch, cartsInfo } = props;
 
+  const [product, setProduct] = useState();
+
   const { id } = useParams();
   const productId = Number(id);
 
-  let product;
-  for (let item of products) {
-    if (item.id !== productId) continue;
-
-    product = item;
-    break;
-  }
-
-  const { title, images, rating, status, price } = product;
   const isCartExistInCarts = cartsInfo.find(
     (cart) => Number(cart.id) === productId
   );
 
+  useEffect(() => {
+    fetchProduct();
+  }, []);
+
+  const fetchProduct = async () => {
+    const res = await productsServices.fetchProductById(productId);
+    setProduct(res.product);
+  };
+
   const discount = () =>
-    Math.round(100 - (price.selling_price / price.rrp_price) * 100);
+    Math.round(
+      100 - (product?.price.selling_price / product?.price.rrp_price) * 100
+    );
 
   const addButtonLabel = () => {
     if (isCartExistInCarts) {
       return "به سبد خرید اضافه شد";
     }
-    if (status === "marketable") {
+    if (product?.status === "marketable") {
       return "افزودن به سبد خرید";
     }
     return "موجود شد به من اطلاع بده";
   };
 
   const handleAddToCarts = () => {
-    if (status !== "marketable") {
+    if (product?.status !== "marketable") {
       console.log("Handle alert in a real project");
       return;
     }
@@ -57,43 +61,47 @@ const Product = (props) => {
       {product ? (
         <div className={style.product}>
           <div className={style.imageBox}>
-            <img className={style.image} src={images.main} alt="کالا" />
+            <img
+              className={style.image}
+              src={product?.images.main}
+              alt="کالا"
+            />
           </div>
           <div className={style.details}>
-            <h3 className={style.title}>{title}</h3>
+            <h3 className={style.title}>{product?.title}</h3>
             <div className={style.rowInMobile}>
               <div className={style.rating}>
                 <span className={style.star}>
                   <FontAwesomeIcon icon={faStar} />
                 </span>{" "}
-                <span className={style.rate}>{rating.rate / 10}</span>{" "}
-                <span className={style.count}>({rating.count})</span>
+                <span className={style.rate}>{product?.rating.rate / 10}</span>{" "}
+                <span className={style.count}>({product?.rating.count})</span>
               </div>
               <div className={style.status}>
                 وضعیت :‌{" "}
                 <span
                   className={
-                    status === "marketable"
+                    product?.status === "marketable"
                       ? style.statusAvailable
                       : style.StatusUnavailable
                   }
                 >
-                  {status === "marketable" ? "آماده ارسال" : "ناموجود"}
+                  {product?.status === "marketable" ? "آماده ارسال" : "ناموجود"}
                 </span>
               </div>
             </div>
             <div className={style.price}>
               <div className={style.sellingPriceBox}>
                 <span className={style.sellingPrice}>
-                  {price.selling_price.toLocaleString("en-US")}
+                  {product?.price.selling_price.toLocaleString("en-US")}
                 </span>
                 <span> تــــومان</span>
               </div>
-              {price.rrp_price && (
+              {product?.price.rrp_price && (
                 <div>
                   <Badge color="red">{discount()}%</Badge>
                   <span className={style.rrpPrice}>
-                    {price.rrp_price.toLocaleString("en-US")}
+                    {product?.price.rrp_price.toLocaleString("en-US")}
                   </span>
                 </div>
               )}

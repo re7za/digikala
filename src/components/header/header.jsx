@@ -9,6 +9,7 @@ const Header = () => {
   const location = useLocation();
   const renderCartsModal = !location.pathname.includes("/carts");
 
+  // eslint-disable-next-line no-unused-vars
   const [searchVal, setSearchVal] = useState("");
 
   const handleonChange = (newVal) => {
