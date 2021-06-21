@@ -8,7 +8,7 @@ import PropTypes from "prop-types";
 import style from "../../assets/styles/lib/cart/style.module.scss";
 
 const Cart = (props) => {
-  const { dispatch, cartsIds, id, title, images, status, price } = props;
+  const { dispatch, id, title, images, status, price } = props;
 
   const discount = () => price.rrp_price - price.selling_price;
 

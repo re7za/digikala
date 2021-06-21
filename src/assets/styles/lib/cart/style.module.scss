@@ -69,11 +69,12 @@ $xl: 1280px;
       outline: none;
       transition: 200ms;
       width: max-content;
+      color: #000b;
       &:hover {
-        color: #000a;
+        color: #0007;
       }
       &:active {
-        color: #000e;
+        color: #000b;
       }
     }
   }

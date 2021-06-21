@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
+
 import { addProductToCarts } from "../../redux/actions/carts.actions";
 import { Badge } from "../badge";
 import { QuickAddButton } from "../quickAddButton";
@@ -53,7 +56,7 @@ const ProductCard = (props) => {
               disabled={isCartExistInCarts}
               onClick={handleAddToCarts}
             >
-              +
+              <FontAwesomeIcon icon={faCartPlus} />
             </QuickAddButton>
           )}
         </div>

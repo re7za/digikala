@@ -2,6 +2,9 @@ import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { connect } from "react-redux";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+
 import { addProductToCarts } from "../../redux/actions/carts.actions";
 
 import { Badge } from "../../lib/badge";
@@ -59,7 +62,9 @@ const Product = (props) => {
             <h3 className={style.title}>{title}</h3>
             <div className={style.rowInMobile}>
               <div className={style.rating}>
-                <span className={style.star}>*</span>{" "}
+                <span className={style.star}>
+                  <FontAwesomeIcon icon={faStar} />
+                </span>{" "}
                 <span className={style.rate}>{rating.rate / 10}</span>{" "}
                 <span className={style.count}>({rating.count})</span>
               </div>

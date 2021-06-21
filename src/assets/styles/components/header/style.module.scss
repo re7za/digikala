@@ -14,6 +14,12 @@ $xl: 1280px;
   display: flex;
   align-items: center;
   gap: 24px;
+  @media screen and (min-width: $lg) {
+    padding: 16px 40px;
+  }
+  @media screen and (min-width: $xl) {
+    padding: 16px 112px;
+  }
   .logoBox {
     padding-top: 8px;
     display: none;
