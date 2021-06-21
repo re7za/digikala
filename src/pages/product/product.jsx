@@ -13,7 +13,7 @@ import { products } from "../../services/mock";
 import style from "../../assets/styles/pages/product/style.module.scss";
 
 const Product = (props) => {
-  const { dispatch, cartsIds } = props;
+  const { dispatch, cartsInfo } = props;
 
   const { id } = useParams();
   const productId = Number(id);
@@ -27,7 +27,9 @@ const Product = (props) => {
   }
 
   const { title, images, rating, status, price } = product;
-  const isCartExistInCarts = cartsIds.includes(productId);
+  const isCartExistInCarts = cartsInfo.find(
+    (cart) => Number(cart.id) === productId
+  );
 
   const discount = () =>
     Math.round(100 - (price.selling_price / price.rrp_price) * 100);
@@ -112,7 +114,7 @@ const Product = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    cartsIds: state.cartsReducer.cartsIds,
+    cartsInfo: state.cartsReducer.cartsInfo,
   };
 };
 

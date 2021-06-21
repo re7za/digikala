@@ -7,7 +7,8 @@ import { removeProductFromCarts } from "../../redux/actions/carts.actions";
 import style from "../../assets/styles/lib/tinyCart/style.module.scss";
 
 const TinyCart = (props) => {
-  const { dispatch, id, title, imageUrl } = props;
+  const { dispatch, cartsInfo, id, title, imageUrl } = props;
+  const cart = cartsInfo.find((cart) => Number(cart.id) === Number(id));
 
   const handleRemoveFromCarts = (event) => {
     event.stopPropagation();
@@ -24,7 +25,7 @@ const TinyCart = (props) => {
           {title}
         </Link>
         <div className={style.secondRow}>
-          <div className={style.quantity}>2 عدد</div>
+          <div className={style.quantity}>{cart?.quantity} عدد</div>
           <button className={style.removeBtn} onClick={handleRemoveFromCarts}>
             حذف
           </button>
@@ -42,7 +43,7 @@ TinyCart.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    cartsIds: state.cartsReducer.cartsIds,
+    cartsInfo: state.cartsReducer.cartsInfo,
   };
 };
 

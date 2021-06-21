@@ -12,15 +12,15 @@ import { QuickAddButton } from "../quickAddButton";
 import style from "../../assets/styles/lib/productCard/style.module.scss";
 
 const ProductCard = (props) => {
-  const { dispatch, cartsIds, id, title, status, images, price } = props;
-  const isCartExistInCarts = cartsIds.includes(id);
+  const { dispatch, cartsInfo, id, title, status, images, price } = props;
+  const cart = cartsInfo.find((cart) => Number(cart.id) === Number(id));
 
   const discount = () =>
     Math.round(100 - (price.selling_price / price.rrp_price) * 100);
 
   const handleAddToCarts = (event) => {
     event.stopPropagation();
-    if (!isCartExistInCarts) dispatch(addProductToCarts(id));
+    dispatch(addProductToCarts(id));
   };
 
   return (
@@ -51,14 +51,16 @@ const ProductCard = (props) => {
               <span> تــــومان</span>
             </div>
           </Link>
-          {status === "marketable" && (
-            <QuickAddButton
-              disabled={isCartExistInCarts}
-              onClick={handleAddToCarts}
-            >
-              <FontAwesomeIcon icon={faCartPlus} />
-            </QuickAddButton>
-          )}
+          <div>
+            {status === "marketable" && (
+              <QuickAddButton onClick={handleAddToCarts}>
+                <FontAwesomeIcon icon={faCartPlus} />
+              </QuickAddButton>
+            )}
+            {cart?.quantity && (
+              <div className={style.quantity}>{cart.quantity} عدد</div>
+            )}
+          </div>
         </div>
       </div>
     </div>
@@ -86,7 +88,7 @@ ProductCard.defaultProps = {
 
 const mapStateToProps = (state) => {
   return {
-    cartsIds: state.cartsReducer.cartsIds,
+    cartsInfo: state.cartsReducer.cartsInfo,
   };
 };
 

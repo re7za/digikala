@@ -7,8 +7,10 @@ import { products } from "../../services/mock";
 import style from "../../assets/styles/pages/carts/style.module.scss";
 
 const Carts = (props) => {
-  const { dispatch, cartsIds } = props;
-  const carts = products.filter((product) => cartsIds.includes(product.id));
+  const { dispatch, cartsInfo } = props;
+  const carts = products.filter((product) =>
+    cartsInfo.find((cart) => Number(cart.id) === Number(product.id))
+  );
 
   const handleDeleteAllCarts = () => {
     localStorage.removeItem("carts");
@@ -39,7 +41,7 @@ const Carts = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    cartsIds: state.cartsReducer.cartsIds,
+    cartsInfo: state.cartsReducer.cartsInfo,
   };
 };
 

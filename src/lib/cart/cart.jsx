@@ -80,7 +80,7 @@ Cart.defaultProps = {
 
 const mapStateToProps = (state) => {
   return {
-    cartsIds: state.cartsReducer.cartsIds,
+    cartsInfo: state.cartsReducer.cartsInfo,
   };
 };
 
