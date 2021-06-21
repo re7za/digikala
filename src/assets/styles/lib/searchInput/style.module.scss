@@ -1,16 +1,18 @@
+@import "../../_variables.scss";
+
 .input {
   width: 100%;
   background-color: #f0f0f1;
   outline: none;
   padding: 8px 15px;
   font-size: 0.97rem;
-  color: #333;
+  color: $text;
   border: none;
   border-radius: 8px;
   transition: 200ms;
   &::placeholder {
     font-size: 12px;
-    color: #0006;
+    color: $text-light;
   }
   &:focus {
     background-color: #e1e1e4;

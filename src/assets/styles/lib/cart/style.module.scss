@@ -1,7 +1,4 @@
-$sm: 576px;
-$md: 768px;
-$lg: 992px;
-$xl: 1280px;
+@import "../../_variables.scss";
 
 .product {
   background-color: #fff;
@@ -32,7 +29,7 @@ $xl: 1280px;
     }
     .title {
       font-size: 1rem;
-      color: #000c;
+      color: $text-dark;
       font-weight: 500;
       margin: 0;
       margin-bottom: 8px;
@@ -40,10 +37,10 @@ $xl: 1280px;
     .status {
       margin: 8px 0px;
       .statusAvailable {
-        color: deepskyblue;
+        color: $secondary;
       }
       .StatusUnavailable {
-        color: #ef394e;
+        color: $primary;
       }
     }
     .price {
@@ -59,7 +56,7 @@ $xl: 1280px;
       }
       .rrpPrice {
         font-size: 0.75rem;
-        color: #ef394e;
+        color: $primary;
       }
     }
     .removeBtn {
@@ -69,12 +66,12 @@ $xl: 1280px;
       outline: none;
       transition: 200ms;
       width: max-content;
-      color: #000b;
+      color: $text-dark;
       &:hover {
-        color: #0007;
+        color: $text;
       }
       &:active {
-        color: #000b;
+        color: $text-dark;
       }
     }
   }

@@ -1,25 +1,27 @@
+@import "../../_variables.scss";
+
 .button {
   padding: 10px 10px 5px 9px;
   color: #fff;
   font-weight: 600;
-  background-color: #ef394e;
+  background-color: $primary;
   border: none;
   border-radius: 50%;
   transition: 200ms;
   &:hover {
-    background-color: #e13041;
+    background-color: $primary-light;
   }
   &:active {
-    background-color: #ef394e;
+    background-color: $primary;
   }
 }
 .disabled {
   cursor: default;
-  background-color: #888888;
+  background-color: $text-light;
   &:hover {
-    background-color: #888888;
+    background-color: $text-light;
   }
   &:active {
-    background-color: #888888;
+    background-color: $text-light;
   }
 }

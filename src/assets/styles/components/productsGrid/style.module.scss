@@ -1,12 +1,9 @@
-$sm: 576px;
-$md: 768px;
-$lg: 992px;
-$xl: 1280px;
+@import "../../_variables.scss";
 
 .grid {
   display: grid;
   grid-template-columns: 1fr;
-  border: 1px solid #eee;
+  border: 1px solid $shadow-light;
   @media screen and (min-width: $sm) {
     grid-template-columns: 1fr 1fr;
   }

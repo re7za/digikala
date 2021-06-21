@@ -1,7 +1,4 @@
-$sm: 576px;
-$md: 768px;
-$lg: 992px;
-$xl: 1280px;
+@import "../../_variables.scss";
 
 .carts {
   padding: 24px;
@@ -13,11 +10,12 @@ $xl: 1280px;
     transition: 200ms;
     width: max-content;
     margin-bottom: 24px;
+    color: $text-light;
     &:hover {
-      color: #000a;
+      color: $text;
     }
     &:active {
-      color: #000e;
+      color: $text-light;
     }
   }
   .grid {

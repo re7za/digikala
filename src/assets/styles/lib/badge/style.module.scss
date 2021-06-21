@@ -1,24 +1,10 @@
+@import "../../_variables.scss";
+
 .badge {
   color: #fff;
-  background-color: #ef394e;
+  background-color: $primary;
   font-size: 11px;
   padding: 0px 6px;
   padding-top: 2px;
   border-radius: 30px;
 }
-// .red {
-//   color: #fff;
-//   background-color: #e22b2b;
-// }
-// .green {
-//   color: #000;
-//   background-color: #4ad84a;
-// }
-// .blue {
-//   color: #000;
-//   background-color: #00e2e2;
-// }
-// .orange {
-//   color: #fff;
-//   background-color: #ee9b00;
-// }

@@ -1,7 +1,5 @@
-$sm: 576px;
-$md: 768px;
-$lg: 992px;
-$xl: 1280px;
+@import "./_variables.scss";
+@import "../../public/font.scss";
 
 .root {
   padding: 0px 8px;
@@ -11,5 +9,46 @@ $xl: 1280px;
   }
   @media screen and (min-width: $xl) {
     padding: 0px 104px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  background-color: #f0f0ff;
+}
+
+body,
+button,
+input,
+label,
+small,
+span,
+div,
+ul,
+li,
+th,
+tr,
+a,
+::placeholder {
+  font-family: IranYekan;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  body {
+    font-size: 14px;
   }
 }

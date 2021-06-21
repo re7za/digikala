@@ -1,15 +1,17 @@
+@import "../../_variables.scss";
+
 .cartsBtn {
   position: relative;
   .cartsLink {
-    color: #0006;
+    color: $text-light;
     font-size: 20px;
     padding: 8px;
     position: relative;
     &:hover {
-      color: #0004;
+      color: $text;
     }
     &:active {
-      color: #0006;
+      color: $text-light;
     }
     .cartsLengthBadge {
       position: absolute;
@@ -24,27 +26,27 @@
     width: 300px;
     background-color: #fff;
     border-radius: 4px;
-    box-shadow: 0px 0px 5px 3px #0002;
+    box-shadow: 0px 0px 5px 3px $shadow;
     .cartsBoxFirstRow {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 10px 16px;
       .cartsLenght {
-        color: #000b;
+        color: $text;
       }
       .cartsPageLink {
-        color: deepskyblue;
+        color: $secondary;
       }
     }
     .tinyCartsBox {
-      border-top: 1px solid #0004;
-      border-bottom: 1px solid #0004;
+      border-top: 1px solid $shadow;
+      border-bottom: 1px solid $shadow;
     }
     .emptyList {
       text-align: center;
       padding: 10px 16px;
-      color: #000b;
+      color: $text;
     }
   }
 }

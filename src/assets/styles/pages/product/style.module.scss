@@ -1,7 +1,4 @@
-$sm: 576px;
-$md: 768px;
-$lg: 992px;
-$xl: 1280px;
+@import "../../_variables.scss";
 
 .product {
   background-color: #fff;
@@ -40,7 +37,7 @@ $xl: 1280px;
     }
     .title {
       font-size: 1.2rem;
-      color: #000c;
+      color: $text-dark;
       font-weight: 500;
     }
     .rowInMobile {
@@ -52,10 +49,10 @@ $xl: 1280px;
       .rating {
         margin: 16px 0px;
         .count {
-          color: #0008;
+          color: $text-light;
         }
         .rate {
-          color: #000c;
+          color: $text;
         }
         .star {
           color: orange;
@@ -65,10 +62,10 @@ $xl: 1280px;
       .status {
         margin: 16px 0px;
         .statusAvailable {
-          color: deepskyblue;
+          color: $secondary;
         }
         .StatusUnavailable {
-          color: #ef394e;
+          color: $primary;
         }
       }
     }
@@ -84,7 +81,7 @@ $xl: 1280px;
         }
       }
       .rrpPrice {
-        color: #999;
+        color: $text-light;
         font-size: 0.85rem;
         text-decoration: line-through;
         margin-left: 4px;

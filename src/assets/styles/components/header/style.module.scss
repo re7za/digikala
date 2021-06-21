@@ -1,11 +1,8 @@
-$sm: 576px;
-$md: 768px;
-$lg: 992px;
-$xl: 1280px;
+@import "../../_variables.scss";
 
 .header {
   background-color: #fff;
-  box-shadow: 0px 5px 5px -2px #0002;
+  box-shadow: 0px 5px 5px -2px $shadow;
   padding: 16px 24px;
   position: sticky;
   top: 0;
