@@ -3,21 +3,25 @@
 .cartsBtn {
   position: relative;
   .cartsLink {
-    color: $text-light;
+    color: $light;
     font-size: 20px;
     padding: 8px;
     position: relative;
+    transition: 200ms;
     &:hover {
-      color: $text;
+      color: $text-light;
     }
     &:active {
-      color: $text-light;
+      color: $light;
     }
     .cartsLengthBadge {
       position: absolute;
       top: 13px;
       left: 22px;
     }
+  }
+  .displayNone {
+    display: none;
   }
   .cartsBox {
     position: absolute;
