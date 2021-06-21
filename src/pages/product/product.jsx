@@ -27,11 +27,11 @@ const Product = (props) => {
 
   useEffect(() => {
     fetchProduct();
-  });
+  }, []);
 
   const fetchProduct = async () => {
     const res = await productsServices.fetchProductById(productId);
-    setProduct(res.product);
+    setProduct(res?.product);
   };
 
   const discount = () =>
