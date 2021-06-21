@@ -4,19 +4,19 @@ $lg: 992px;
 $xl: 1280px;
 
 .container {
-  @media screen and (min-width: $lg) {
-    display: grid;
-    grid-gap: 24px;
-    grid-template-columns: 1fr 4fr;
-  }
+  // @media screen and (min-width: $lg) {
+  //   display: grid;
+  //   grid-gap: 24px;
+  //   grid-template-columns: 1fr 4fr;
+  // }
   .section {
     background-color: #fff;
   }
-  .aside {
-    background-color: #fff;
-    display: none;
-    @media screen and (min-width: $lg) {
-      display: block;
-    }
-  }
+  // .aside {
+  //   background-color: #fff;
+  //   display: none;
+  //   @media screen and (min-width: $lg) {
+  //     display: block;
+  //   }
+  // }
 }

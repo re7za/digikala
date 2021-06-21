@@ -10,7 +10,7 @@ export const Products = () => {
     <>
       <button onClick={() => productsServices.getProducts()}>fetch</button>
       <div className={style.container}>
-        <aside className={style.aside}>aside</aside>
+        {/* <aside className={style.aside}>aside</aside> */}
         <section className={style.section}>
           <ProductsArea />
         </section>
