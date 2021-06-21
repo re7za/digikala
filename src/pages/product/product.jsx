@@ -10,6 +10,7 @@ import { productsServices } from "../../services/products.service";
 
 import { Badge } from "../../lib/badge";
 import { Button } from "../../lib/‌‌‌button";
+import Loader from "../../lib/loader";
 import style from "../../assets/styles/pages/product/style.module.scss";
 
 const Product = (props) => {
@@ -26,7 +27,7 @@ const Product = (props) => {
 
   useEffect(() => {
     fetchProduct();
-  }, []);
+  });
 
   const fetchProduct = async () => {
     const res = await productsServices.fetchProductById(productId);
@@ -57,7 +58,7 @@ const Product = (props) => {
   };
 
   return (
-    <div>
+    <div className={style.productRoot}>
       {product ? (
         <div className={style.product}>
           <div className={style.imageBox}>
@@ -114,7 +115,7 @@ const Product = (props) => {
           </div>
         </div>
       ) : (
-        <div>404 Not Found</div>
+        <Loader />
       )}
     </div>
   );
