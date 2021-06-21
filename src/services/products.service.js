@@ -1,8 +1,10 @@
 import axios from "../helpers/http-client";
 
-const fetchProducts = () => {
+const fetchProducts = ({ currentPage = 1, searchQuery }) => {
   return axios
-    .get("/search/")
+    .get("/search/", {
+      params: { page: currentPage, q: searchQuery },
+    })
     .then((res) => {
       if (res.status === 200) return res.data.data;
     })
