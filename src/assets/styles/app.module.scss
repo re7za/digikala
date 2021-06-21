@@ -5,6 +5,7 @@ $xl: 1280px;
 
 .root {
   padding: 0px 8px;
+  margin: 24px 0px;
   @media screen and (min-width: $md) {
     padding: 0px 24px;
   }
