@@ -1,15 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { handleTextLength } from "../../helpers/textUtils";
+import { productsServices } from "../../services/products.service";
 import { removeProductFromCarts } from "../../redux/actions/carts.actions";
+
 import style from "../../assets/styles/lib/tinyCart/style.module.scss";
 
 const TinyCart = (props) => {
-  const { dispatch, cartsInfo, id, title, imageUrl } = props;
+  const { dispatch, cartsInfo, id } = props;
   const cart = cartsInfo.find((cart) => Number(cart.id) === Number(id));
+
+  const [product, setProduct] = useState({});
+
+  useEffect(() => {
+    fetchProduct();
+  }, []);
+
+  const fetchProduct = async () => {
+    const res = await productsServices.fetchProductById(id);
+    setProduct(res?.product);
+  };
 
   const handleRemoveFromCarts = (event) => {
     event.stopPropagation();
@@ -19,11 +32,11 @@ const TinyCart = (props) => {
   return (
     <div className={style.tinyCart}>
       <Link to={`/product-details/${id}`} className={style.imageBox}>
-        <img className={style.image} src={imageUrl} alt="کالا" />
+        <img className={style.image} src={product?.images?.main} alt="کالا" />
       </Link>
       <div className={style.details}>
         <Link to={`/product-details/${id}`} className={style.title}>
-          {handleTextLength(title, 40)}
+          {handleTextLength(product?.title, 40)}
         </Link>
         <div className={style.secondRow}>
           <div className={style.quantity}>{cart?.quantity} عدد</div>
@@ -38,8 +51,6 @@ const TinyCart = (props) => {
 
 TinyCart.propTypes = {
   id: PropTypes.number,
-  title: PropTypes.string,
-  imageUrl: PropTypes.string,
 };
 
 const mapStateToProps = (state) => {
