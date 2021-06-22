@@ -59,19 +59,24 @@
         color: $primary;
       }
     }
-    .removeBtn {
-      padding: 4px 8px;
-      background-color: transparent;
-      border: none;
-      outline: none;
-      transition: 200ms;
-      width: max-content;
-      color: $text-dark;
-      &:hover {
-        color: $text;
-      }
-      &:active {
+    .quantity {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      .removeBtn {
+        padding: 4px 8px;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        transition: 200ms;
+        width: max-content;
         color: $text-dark;
+        &:hover {
+          color: $text;
+        }
+        &:active {
+          color: $text-dark;
+        }
       }
     }
   }

@@ -3,14 +3,11 @@ import { connect } from "react-redux";
 
 import { removeAllCarts } from "../../redux/actions/carts.actions";
 import Cart from "../../lib/cart";
-import { products } from "../../services/mock";
 import style from "../../assets/styles/pages/carts/style.module.scss";
 
 const Carts = (props) => {
   const { dispatch, cartsInfo } = props;
-  const carts = products.filter((product) =>
-    cartsInfo.find((cart) => Number(cart.id) === Number(product.id))
-  );
+  const cartsLen = cartsInfo.length;
 
   const handleDeleteAllCarts = () => {
     localStorage.removeItem("carts");
@@ -19,21 +16,23 @@ const Carts = (props) => {
 
   return (
     <div className={style.carts}>
-      {carts.length ? (
+      {cartsLen ? (
         <>
           <button className={style.deleteAllBtn} onClick={handleDeleteAllCarts}>
             پاک کردن همه
           </button>
           <div className={style.grid}>
-            {carts.map((product) => (
-              <div key={product.id}>
-                <Cart {...product} />
+            {cartsInfo.map((cart) => (
+              <div key={cart.id}>
+                <Cart id={cart.id} />
               </div>
             ))}
           </div>
         </>
       ) : (
-        <div>Empty list!</div>
+        <div className={style.emptyList}>
+          هیچ کالایی در سبد خرید موجود نیست!
+        </div>
       )}
     </div>
   );

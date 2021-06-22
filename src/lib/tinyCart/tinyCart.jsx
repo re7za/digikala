@@ -13,7 +13,7 @@ const TinyCart = (props) => {
   const { dispatch, cartsInfo, id } = props;
   const cart = cartsInfo.find((cart) => Number(cart.id) === Number(id));
 
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState();
 
   useEffect(() => {
     fetchProduct();

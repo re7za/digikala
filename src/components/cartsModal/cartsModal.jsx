@@ -79,6 +79,13 @@ const CartsModal = (props) => {
                 )
             )}
           </div>
+          {cartsLen > 3 && (
+            <div className={style.cartsBoxFirstRow}>
+              <Link to="/carts" className={style.cartsPageLink}>
+                مشاهده همه
+              </Link>
+            </div>
+          )}
         </div>
       )}
     </span>

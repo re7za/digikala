@@ -1,16 +1,29 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { removeProductFromCarts } from "../../redux/actions/carts.actions";
-import PropTypes from "prop-types";
+import { productsServices } from "../../services/products.service";
 
 import style from "../../assets/styles/lib/cart/style.module.scss";
 
 const Cart = (props) => {
-  const { dispatch, id, title, images, status, price } = props;
+  const { dispatch, cartsInfo, id } = props;
+  const cart = cartsInfo.find((cart) => Number(cart.id) === Number(id));
 
-  const discount = () => price.rrp_price - price.selling_price;
+  const [product, setProduct] = useState();
+
+  const discount = product?.price.rrp_price - product?.price.selling_price;
+
+  useEffect(() => {
+    fetchProduct();
+  }, []);
+
+  const fetchProduct = async () => {
+    const res = await productsServices.fetchProductById(id);
+    setProduct(res?.product);
+  };
 
   const handleRemoveFromCarts = () => {
     dispatch(removeProductFromCarts(id));
@@ -19,42 +32,45 @@ const Cart = (props) => {
   return (
     <div className={style.product}>
       <Link to={`/product-details/${id}`} className={style.imageBox}>
-        <img className={style.image} src={images.main} alt="کالا" />
+        <img className={style.image} src={product?.images.main} alt="کالا" />
       </Link>
       <div className={style.details}>
         <Link to={`/product-details/${id}`}>
-          <h3 className={style.title}>{title}</h3>
+          <h3 className={style.title}>{product?.title}</h3>
         </Link>
         <div className={style.status}>
           وضعیت :‌{" "}
           <span
             className={
-              status === "marketable"
+              product?.status === "marketable"
                 ? style.statusAvailable
                 : style.StatusUnavailable
             }
           >
-            {status === "marketable" ? "آماده ارسال" : "ناموجود"}
+            {product?.status === "marketable" ? "آماده ارسال" : "ناموجود"}
           </span>
         </div>
         <div className={style.price}>
-          {price.rrp_price && (
+          {discount !== 0 && (
             <div>
               <span className={style.rrpPrice}>
-                تخفیف {discount().toLocaleString("en-US")} تومان
+                تخفیف {discount.toLocaleString("en-US")} تومان
               </span>
             </div>
           )}
           <div className={style.sellingPriceBox}>
             <span className={style.sellingPrice}>
-              {price.selling_price.toLocaleString("en-US")}
+              {product?.price.selling_price.toLocaleString("en-US")}
             </span>
             <span> تــــومان</span>
           </div>
         </div>
-        <button className={style.removeBtn} onClick={handleRemoveFromCarts}>
-          حذف
-        </button>
+        <div className={style.quantity}>
+          <div>{cart.quantity} عدد</div>
+          <button className={style.removeBtn} onClick={handleRemoveFromCarts}>
+            حذف
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -62,10 +78,6 @@ const Cart = (props) => {
 
 Cart.propTypes = {
   id: PropTypes.number,
-  title: PropTypes.string.isRequired,
-  status: PropTypes.string,
-  images: PropTypes.object,
-  price: PropTypes.object,
 };
 
 Cart.defaultProps = {
