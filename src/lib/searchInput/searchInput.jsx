@@ -18,7 +18,7 @@ function SearchInput(props) {
 
     setTypingTimeout(
       setTimeout(() => {
-        if (inputVal !== "") handleonChange(inputVal);
+        handleonChange(inputVal);
       }, TYPING_DONE_TIME)
     );
   };

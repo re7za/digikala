@@ -58,17 +58,12 @@ ProductCard.propTypes = {
   title: PropTypes.string.isRequired,
   status: PropTypes.string,
   images: PropTypes.object,
-  price: PropTypes.object,
 };
 
 ProductCard.defaultProps = {
   status: "",
   images: {
     main: "",
-  },
-  price: {
-    selling_price: 0,
-    rrp_price: 0,
   },
 };
 
@@ -78,4 +73,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(ProductCard);
+export default React.memo(connect(mapStateToProps)(ProductCard));

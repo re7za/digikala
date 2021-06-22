@@ -66,4 +66,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(TinyCart);
+export default React.memo(connect(mapStateToProps)(TinyCart));

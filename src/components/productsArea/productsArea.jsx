@@ -53,7 +53,7 @@ const ProductsArea = ({ searchQuery }) => {
                 </React.Fragment>
               ))}
             </div>
-            {totalPage && (
+            {totalPage !== 0 && (
               <Pagination
                 totalPages={totalPage}
                 currentPage={currentPage}
