@@ -1,0 +1,17 @@
+@import "../../_variables.scss";
+
+.textButton {
+  padding: 4px 8px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  transition: 200ms;
+  width: max-content;
+  color: $text-dark;
+  &:hover {
+    color: $text;
+  }
+  &:active {
+    color: $text-dark;
+  }
+}
