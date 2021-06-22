@@ -3,8 +3,12 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import CounterButtons from "../../lib/counterButtons";
-import Loader from "../../lib/loader";
+import CounterButtons from "../counterButtons";
+import Loader from "../loader";
+import Discount from "../discount";
+import Status from "../status";
+import SellingPrice from "../sellingPrice";
+import TextButton from "../textButton";
 import { handleTextLength } from "../../helpers/text-utils";
 import { productsServices } from "../../services/products.service";
 import {
@@ -20,8 +24,6 @@ const Cart = (props) => {
   const cart = cartsInfo.find((cart) => Number(cart.id) === Number(id));
 
   const [product, setProduct] = useState();
-
-  const discount = product?.price.rrp_price - product?.price.selling_price;
 
   useEffect(() => {
     fetchProduct();
@@ -62,31 +64,14 @@ const Cart = (props) => {
               </h3>
             </Link>
             <div className={style.status}>
-              وضعیت :‌{" "}
-              <span
-                className={
-                  product?.status === "marketable"
-                    ? style.statusAvailable
-                    : style.StatusUnavailable
-                }
-              >
-                {product?.status === "marketable" ? "آماده ارسال" : "ناموجود"}
-              </span>
+              <Status isMarketable={product?.status === "marketable"} />
             </div>
             <div className={style.price}>
-              {discount !== 0 && (
-                <div>
-                  <span className={style.rrpPrice}>
-                    تخفیف {discount.toLocaleString("en-US")} تومان
-                  </span>
-                </div>
-              )}
-              <div className={style.sellingPriceBox}>
-                <span className={style.sellingPrice}>
-                  {product?.price.selling_price.toLocaleString("en-US")}
-                </span>
-                <span> تــــومان</span>
-              </div>
+              <Discount
+                rrpPrice={product?.price.rrp_price}
+                sellingPrice={product?.price.selling_price}
+              />
+              <SellingPrice sellingPrice={product?.price.selling_price} />
             </div>
             <div className={style.quantity}>
               <CounterButtons
@@ -94,12 +79,7 @@ const Cart = (props) => {
                 onIncrease={handleAddToCarts}
                 counter={cart?.quantity}
               />
-              <button
-                className={style.removeBtn}
-                onClick={handleRemoveFromCarts}
-              >
-                حذف
-              </button>
+              <TextButton onClick={handleRemoveFromCarts}>حذف</TextButton>
             </div>
           </div>
         </div>
