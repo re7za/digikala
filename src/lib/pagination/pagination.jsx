@@ -13,7 +13,7 @@ import style from "../../assets/styles/lib/pagination/style.module.scss";
 const fetchPaginationData = (
   totalPages,
   currentPage,
-  maximumNeighbours = 2
+  maximumNeighbours = 3
 ) => {
   let minBound = Math.max(1, currentPage - maximumNeighbours);
   let maxBound = Math.min(totalPages, currentPage + maximumNeighbours);
@@ -24,7 +24,8 @@ const fetchPaginationData = (
   };
 };
 
-const Pagination = ({ onPageChanged, totalPages, currentPage = 0 }) => {
+const Pagination = (props) => {
+  const { onPageChanged, totalPages, currentPage = 0 } = props;
   const [selectedPage, setSelectedPage] = useState(currentPage);
 
   const { isEnd, isStart, pages } = useMemo(
@@ -64,9 +65,9 @@ const Pagination = ({ onPageChanged, totalPages, currentPage = 0 }) => {
 };
 
 Pagination.propType = {
+  onPageChanged: PropTypes.func,
   totalPages: PropTypes.number,
   currentPage: PropTypes.number,
-  maximumNeighbours: PropTypes.number,
 };
 
 export default Pagination;
