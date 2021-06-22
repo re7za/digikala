@@ -48,26 +48,6 @@
       }
       .rating {
         margin: 16px 0px;
-        .count {
-          color: $text-light;
-        }
-        .rate {
-          color: $text;
-        }
-        .star {
-          color: orange;
-          font-size: 12px;
-        }
-      }
-      .status {
-        margin: 16px 0px;
-        color: $text-light;
-        .statusAvailable {
-          color: $secondary;
-        }
-        .StatusUnavailable {
-          color: $primary;
-        }
       }
     }
     .price {
@@ -76,20 +56,6 @@
       flex-grow: 1;
       flex-direction: column;
       justify-content: flex-end;
-      .sellingPriceBox {
-        .sellingPrice {
-          font-size: 1.2rem;
-        }
-      }
-      .rrpPrice {
-        color: $text-light;
-        font-size: 0.85rem;
-        text-decoration: line-through;
-        margin-left: 4px;
-        @media screen and (min-width: $sm) {
-          font-size: 0.9rem;
-        }
-      }
     }
   }
 }

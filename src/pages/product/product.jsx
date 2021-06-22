@@ -2,19 +2,19 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
-
 import {
   addProductToCarts,
   reduceProductFromCarts,
 } from "../../redux/actions/carts.actions";
 import { productsServices } from "../../services/products.service";
 
-import Badge from "../../lib/badge";
 import Button from "../../lib/‌‌‌button";
 import CounterButtons from "../../lib/counterButtons";
 import Loader from "../../lib/loader";
+import Discount from "../../lib/discount";
+import Status from "../../lib/status";
+import Rating from "../../lib/rating";
+import SellingPrice from "../../lib/sellingPrice";
 
 import style from "../../assets/styles/pages/product/style.module.scss";
 
@@ -27,9 +27,6 @@ const Product = (props) => {
 
   const [product, setProduct] = useState();
 
-  const discount = Math.round(
-    100 - (product?.price.selling_price / product?.price.rrp_price) * 100
-  );
   const isMarketable = product?.status === "marketable";
   const addButtonLabel = isMarketable
     ? "افزودن به سبد خرید"
@@ -71,40 +68,19 @@ const Product = (props) => {
             <h3 className={style.title}>{product?.title}</h3>
             <div className={style.rowInMobile}>
               <div className={style.rating}>
-                <span className={style.star}>
-                  <FontAwesomeIcon icon={faStar} />
-                </span>{" "}
-                <span className={style.rate}>{product?.rating.rate / 10}</span>{" "}
-                <span className={style.count}>({product?.rating.count})</span>
+                <Rating
+                  rate={product?.rating.rate / 10}
+                  count={product?.rating.count}
+                />
               </div>
-              <div className={style.status}>
-                وضعیت :‌{" "}
-                <span
-                  className={
-                    isMarketable
-                      ? style.statusAvailable
-                      : style.StatusUnavailable
-                  }
-                >
-                  {isMarketable ? "آماده ارسال" : "ناموجود"}
-                </span>
-              </div>
+              <Status isMarketable={isMarketable} />
             </div>
             <div className={style.price}>
-              <div className={style.sellingPriceBox}>
-                <span className={style.sellingPrice}>
-                  {product?.price.selling_price.toLocaleString("en-US")}
-                </span>
-                <span> تــــومان</span>
-              </div>
-              {discount !== 0 && (
-                <div>
-                  <Badge color="red">{discount}%</Badge>
-                  <span className={style.rrpPrice}>
-                    {product?.price.rrp_price.toLocaleString("en-US")}
-                  </span>
-                </div>
-              )}
+              <SellingPrice sellingPrice={product?.price.selling_price} />
+              <Discount
+                rrpPrice={product?.price.rrp_price}
+                sellingPrice={product?.price.selling_price}
+              />
             </div>
             <div>
               {cart ? (
