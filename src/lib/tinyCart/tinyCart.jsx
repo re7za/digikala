@@ -30,22 +30,33 @@ const TinyCart = (props) => {
   };
 
   return (
-    <div className={style.tinyCart}>
-      <Link to={`/product-details/${id}`} className={style.imageBox}>
-        <img className={style.image} src={product?.images?.main} alt="کالا" />
-      </Link>
-      <div className={style.details}>
-        <Link to={`/product-details/${id}`} className={style.title}>
-          {handleTextLength(product?.title, 40)}
-        </Link>
-        <div className={style.secondRow}>
-          <div className={style.quantity}>{cart?.quantity} عدد</div>
-          <button className={style.removeBtn} onClick={handleRemoveFromCarts}>
-            حذف
-          </button>
+    <>
+      {product && (
+        <div className={style.tinyCart}>
+          <Link to={`/product-details/${id}`} className={style.imageBox}>
+            <img
+              className={style.image}
+              src={product?.images?.main}
+              alt="کالا"
+            />
+          </Link>
+          <div className={style.details}>
+            <Link to={`/product-details/${id}`} className={style.title}>
+              {handleTextLength(product?.title, 40)}
+            </Link>
+            <div className={style.secondRow}>
+              <div className={style.quantity}>{cart?.quantity} عدد</div>
+              <button
+                className={style.removeBtn}
+                onClick={handleRemoveFromCarts}
+              >
+                حذف
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 
