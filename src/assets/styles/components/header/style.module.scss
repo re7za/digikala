@@ -20,6 +20,7 @@
   .logoBox {
     padding-top: 8px;
     display: none;
+    width: 115px;
     @media screen and (min-width: $sm) {
       display: block;
     }

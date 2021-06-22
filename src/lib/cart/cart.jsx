@@ -3,9 +3,14 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
+import CounterButtons from "../../lib/counterButtons";
 import { handleTextLength } from "../../helpers/text-utils";
-import { removeProductFromCarts } from "../../redux/actions/carts.actions";
 import { productsServices } from "../../services/products.service";
+import {
+  removeProductFromCarts,
+  addProductToCarts,
+  reduceProductFromCarts,
+} from "../../redux/actions/carts.actions";
 
 import style from "../../assets/styles/lib/cart/style.module.scss";
 
@@ -26,8 +31,16 @@ const Cart = (props) => {
     setProduct(res?.product);
   };
 
+  const handleAddToCarts = () => {
+    dispatch(addProductToCarts(id));
+  };
+
   const handleRemoveFromCarts = () => {
     dispatch(removeProductFromCarts(id));
+  };
+
+  const handleReduceFromCarts = () => {
+    dispatch(reduceProductFromCarts(id));
   };
 
   return (
@@ -75,7 +88,11 @@ const Cart = (props) => {
               </div>
             </div>
             <div className={style.quantity}>
-              <div>{cart.quantity} عدد</div>
+              <CounterButtons
+                onDecrease={handleReduceFromCarts}
+                onIncrease={handleAddToCarts}
+                counter={cart?.quantity}
+              />
               <button
                 className={style.removeBtn}
                 onClick={handleRemoveFromCarts}

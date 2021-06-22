@@ -1,0 +1,33 @@
+@import "../../_variables.scss";
+
+.counterBox {
+  border-radius: 8px;
+  display: flex;
+  overflow: hidden;
+  max-width: fit-content;
+  border: 1px solid $shadow-light;
+  height: 43px;
+  .button {
+    border: none;
+    outline: none;
+    padding: 8px 12px 4px;
+    background-color: #fff;
+    color: $text-light;
+    transition: 100ms;
+    &:hover {
+      background-color: $shadow-light;
+    }
+    &:active {
+      background-color: $shadow;
+    }
+  }
+  .counter {
+    border-left: 1px solid $shadow-light;
+    border-right: 1px solid $shadow-light;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    font-size: 16px;
+  }
+}

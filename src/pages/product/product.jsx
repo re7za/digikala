@@ -5,25 +5,35 @@ import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
-import { addProductToCarts } from "../../redux/actions/carts.actions";
+import {
+  addProductToCarts,
+  reduceProductFromCarts,
+} from "../../redux/actions/carts.actions";
 import { productsServices } from "../../services/products.service";
 
 import { Badge } from "../../lib/badge";
 import { Button } from "../../lib/‌‌‌button";
+import CounterButtons from "../../lib/counterButtons";
 import Loader from "../../lib/loader";
+
 import style from "../../assets/styles/pages/product/style.module.scss";
 
 const Product = (props) => {
   const { dispatch, cartsInfo } = props;
 
-  const [product, setProduct] = useState();
-
   const { id } = useParams();
   const productId = Number(id);
+  const cart = cartsInfo.find((cart) => Number(cart.id) === productId);
 
-  const isCartExistInCarts = cartsInfo.find(
-    (cart) => Number(cart.id) === productId
+  const [product, setProduct] = useState();
+
+  const discount = Math.round(
+    100 - (product?.price.selling_price / product?.price.rrp_price) * 100
   );
+  const isMarketable = product?.status === "marketable";
+  const addButtonLabel = isMarketable
+    ? "افزودن به سبد خرید"
+    : "موجود شد به من اطلاع بده";
 
   useEffect(() => {
     fetchProduct();
@@ -34,26 +44,16 @@ const Product = (props) => {
     setProduct(res?.product);
   };
 
-  const discount = Math.round(
-    100 - (product?.price.selling_price / product?.price.rrp_price) * 100
-  );
-
-  const addButtonLabel = () => {
-    if (isCartExistInCarts) {
-      return "به سبد خرید اضافه شد";
-    }
-    if (product?.status === "marketable") {
-      return "افزودن به سبد خرید";
-    }
-    return "موجود شد به من اطلاع بده";
-  };
-
   const handleAddToCarts = () => {
-    if (product?.status !== "marketable") {
+    if (!isMarketable) {
       console.log("Handle alert in a real project");
       return;
     }
-    if (!isCartExistInCarts) dispatch(addProductToCarts(productId));
+    dispatch(addProductToCarts(productId));
+  };
+
+  const handleReduceFromCarts = () => {
+    dispatch(reduceProductFromCarts(productId));
   };
 
   return (
@@ -81,12 +81,12 @@ const Product = (props) => {
                 وضعیت :‌{" "}
                 <span
                   className={
-                    product?.status === "marketable"
+                    isMarketable
                       ? style.statusAvailable
                       : style.StatusUnavailable
                   }
                 >
-                  {product?.status === "marketable" ? "آماده ارسال" : "ناموجود"}
+                  {isMarketable ? "آماده ارسال" : "ناموجود"}
                 </span>
               </div>
             </div>
@@ -107,9 +107,17 @@ const Product = (props) => {
               )}
             </div>
             <div>
-              <Button disabled={isCartExistInCarts} onClick={handleAddToCarts}>
-                {addButtonLabel()}
-              </Button>
+              {cart ? (
+                <CounterButtons
+                  onDecrease={handleReduceFromCarts}
+                  onIncrease={handleAddToCarts}
+                  counter={cart?.quantity}
+                />
+              ) : (
+                <Button disabled={!isMarketable} onClick={handleAddToCarts}>
+                  {addButtonLabel}
+                </Button>
+              )}
             </div>
           </div>
         </div>
