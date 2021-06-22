@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import CounterButtons from "../../lib/counterButtons";
+import Loader from "../../lib/loader";
 import { handleTextLength } from "../../helpers/text-utils";
 import { productsServices } from "../../services/products.service";
 import {
@@ -45,7 +46,7 @@ const Cart = (props) => {
 
   return (
     <>
-      {product && (
+      {product ? (
         <div className={style.product}>
           <Link to={`/product-details/${id}`} className={style.imageBox}>
             <img
@@ -102,6 +103,8 @@ const Cart = (props) => {
             </div>
           </div>
         </div>
+      ) : (
+        <Loader />
       )}
     </>
   );
