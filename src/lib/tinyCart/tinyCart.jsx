@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { handleTextLength } from "../../helpers/textUtils";
+import { handleTextLength } from "../../helpers/text-utils";
 import { productsServices } from "../../services/products.service";
 import { removeProductFromCarts } from "../../redux/actions/carts.actions";
 

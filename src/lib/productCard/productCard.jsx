@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 
 import { addProductToCarts } from "../../redux/actions/carts.actions";
-import { handleTextLength } from "../../helpers/textUtils";
+import { handleTextLength } from "../../helpers/text-utils";
 import { Badge } from "../badge";
 import { QuickAddButton } from "../quickAddButton";
 import style from "../../assets/styles/lib/productCard/style.module.scss";
