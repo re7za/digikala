@@ -10,6 +10,7 @@ import { addProductToCarts } from "../../redux/actions/carts.actions";
 import { handleTextLength } from "../../helpers/text-utils";
 
 import Discount from "../discount";
+import SellingPrice from "../sellingPrice";
 import QuickAddButton from "../quickAddButton";
 
 import style from "../../assets/styles/lib/productCard/style.module.scss";
@@ -38,15 +39,10 @@ const ProductCard = (props) => {
           <div className={style.purchase}>
             <Link to={`/product-details/${id}`} className={style.price}>
               <Discount
-                rrp_price={price.rrp_price}
-                selling_price={price.selling_price}
+                rrpPrice={price.rrp_price}
+                sellingPrice={price.selling_price}
               />
-              <div className={style.sellingPriceBox}>
-                <span className={style.sellingPrice}>
-                  {price.selling_price.toLocaleString("en-US")}
-                </span>
-                <span> تــــومان</span>
-              </div>
+              <SellingPrice sellingPrice={price.selling_price} />
             </Link>
             <div>
               {status === "marketable" && (

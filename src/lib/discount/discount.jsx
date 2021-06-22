@@ -6,32 +6,32 @@ import Badge from "../badge";
 import style from "../../assets/styles/lib/discount/style.module.scss";
 
 const Discount = (props) => {
-  const { rrp_price, selling_price } = props;
+  const { rrpPrice, sellingPrice } = props;
 
-  const discount = Math.round(100 - (selling_price / rrp_price) * 100);
+  const discount = Math.round(100 - (sellingPrice / rrpPrice) * 100);
 
   return (
-    <div>
+    <span>
       {discount !== 0 && (
         <>
           <Badge color="red">{discount}%</Badge>
           <span className={style.rrpPrice}>
-            {rrp_price.toLocaleString("en-US")}
+            {rrpPrice.toLocaleString("en-US")}
           </span>
         </>
       )}
-    </div>
+    </span>
   );
 };
 
 Discount.propTypes = {
-  rrp_price: PropTypes.number,
-  selling_price: PropTypes.number,
+  rrpPrice: PropTypes.number,
+  sellingPrice: PropTypes.number,
 };
 
 Discount.defaultProps = {
-  rrp_price: 0,
-  selling_price: 0,
+  rrpPrice: 0,
+  sellingPrice: 0,
 };
 
 export default Discount;
