@@ -45,7 +45,6 @@
         font-size: 0.82rem;
         color: $text-light;
         min-height: 45px;
-        text-overflow: hidden;
         padding: 8px;
         flex-grow: 1;
         @media screen and (min-width: $sm) {
@@ -63,12 +62,6 @@
             padding: 12px 24px;
             padding-left: 8px;
           }
-        }
-        .quantity {
-          color: $text-light;
-          text-align: center;
-          font-size: 12px;
-          margin-top: 4px;
         }
       }
     }

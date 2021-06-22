@@ -3,15 +3,12 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
-
 import { addProductToCarts } from "../../redux/actions/carts.actions";
 import { handleTextLength } from "../../helpers/text-utils";
 
 import Discount from "../discount";
 import SellingPrice from "../sellingPrice";
-import QuickAddButton from "../quickAddButton";
+import MiniPurchaseButton from "../miniPurchaseButton";
 
 import style from "../../assets/styles/lib/productCard/style.module.scss";
 
@@ -44,16 +41,11 @@ const ProductCard = (props) => {
               />
               <SellingPrice sellingPrice={price.selling_price} />
             </Link>
-            <div>
-              {status === "marketable" && (
-                <QuickAddButton onClick={handleAddToCarts}>
-                  <FontAwesomeIcon icon={faCartPlus} />
-                </QuickAddButton>
-              )}
-              {cart?.quantity && (
-                <div className={style.quantity}>{cart.quantity} عدد</div>
-              )}
-            </div>
+            <MiniPurchaseButton
+              isDisabled={status !== "marketable"}
+              onClick={handleAddToCarts}
+              quantity={cart?.quantity}
+            />
           </div>
         </div>
       </div>
