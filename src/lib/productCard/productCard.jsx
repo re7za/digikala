@@ -16,8 +16,9 @@ const ProductCard = (props) => {
   const { dispatch, cartsInfo, id, title, status, images, price } = props;
   const cart = cartsInfo.find((cart) => Number(cart.id) === Number(id));
 
-  const discount = () =>
-    Math.round(100 - (price.selling_price / price.rrp_price) * 100);
+  const discount = Math.round(
+    100 - (price.selling_price / price.rrp_price) * 100
+  );
 
   const handleAddToCarts = (event) => {
     event.stopPropagation();
@@ -37,9 +38,9 @@ const ProductCard = (props) => {
         </Link>
         <div className={style.purchase}>
           <Link to={`/product-details/${id}`} className={style.price}>
-            {price.rrp_price && (
+            {discount !== 0 && (
               <div>
-                <Badge color="red">{discount()}%</Badge>
+                <Badge color="red">{discount}%</Badge>
                 <span className={style.rrpPrice}>
                   {price.rrp_price.toLocaleString("en-US")}
                 </span>

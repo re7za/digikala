@@ -34,10 +34,9 @@ const Product = (props) => {
     setProduct(res?.product);
   };
 
-  const discount = () =>
-    Math.round(
-      100 - (product?.price.selling_price / product?.price.rrp_price) * 100
-    );
+  const discount = Math.round(
+    100 - (product?.price.selling_price / product?.price.rrp_price) * 100
+  );
 
   const addButtonLabel = () => {
     if (isCartExistInCarts) {
@@ -98,9 +97,9 @@ const Product = (props) => {
                 </span>
                 <span> تــــومان</span>
               </div>
-              {product?.price.rrp_price && (
+              {discount !== 0 && (
                 <div>
-                  <Badge color="red">{discount()}%</Badge>
+                  <Badge color="red">{discount}%</Badge>
                   <span className={style.rrpPrice}>
                     {product?.price.rrp_price.toLocaleString("en-US")}
                   </span>
