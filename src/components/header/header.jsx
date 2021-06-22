@@ -1,19 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import { connect } from "react-redux";
+
+import { handleSearchInputChange } from "../../redux/actions/query.actions";
 
 import CartsModal from "../cartsModal";
 import SearchInput from "../../lib/searchInput";
+
 import style from "../../assets/styles/components/header/style.module.scss";
 
-const Header = () => {
+const Header = ({ dispatch }) => {
   const location = useLocation();
   const renderCartsModal = !location.pathname.includes("/carts");
 
-  // eslint-disable-next-line no-unused-vars
-  const [searchVal, setSearchVal] = useState("");
-
   const handleonChange = (newVal) => {
-    setSearchVal(newVal);
+    dispatch(handleSearchInputChange(newVal));
   };
 
   return (
@@ -41,4 +42,10 @@ const Header = () => {
   );
 };
 
-export default Header;
+const mapStateToProps = (state) => {
+  return {
+    searchQuery: state.queryReducer.searchQuery,
+  };
+};
+
+export default connect(mapStateToProps)(Header);

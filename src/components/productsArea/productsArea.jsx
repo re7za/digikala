@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 
 import { productsServices } from "../../services/products.service";
 import ProductCard from "../../lib/productCard";
@@ -7,23 +8,32 @@ import Loader from "../../lib/loader";
 
 import style from "../../assets/styles/components/productsArea/style.module.scss";
 
-const ProductsArea = () => {
+const ProductsArea = ({ searchQuery }) => {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [totalPage, setTotalPage] = useState(null);
 
+  let _currentPage = currentPage;
+
+  useEffect(() => {
+    _currentPage = 1;
+  }, [searchQuery]);
+
   useEffect(() => {
     setIsLoading(true);
     fetchProducts();
-  }, [currentPage]);
+  }, [currentPage, searchQuery]);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
   const fetchProducts = async () => {
-    const res = await productsServices.fetchProducts({ currentPage });
+    const res = await productsServices.fetchProducts({
+      currentPage: _currentPage,
+      searchQuery,
+    });
     setIsLoading(false);
     setProducts(res?.products);
     setCurrentPage(res.pager.current_page);
@@ -33,7 +43,7 @@ const ProductsArea = () => {
 
   return (
     <div>
-      <div className={style.productsGrid}>
+      <div className={style.productsArea}>
         {!isLoading ? (
           <>
             <div className={style.grid}>
@@ -61,4 +71,10 @@ const ProductsArea = () => {
   );
 };
 
-export default ProductsArea;
+const mapStateToProps = (state) => {
+  return {
+    searchQuery: state.queryReducer.searchQuery,
+  };
+};
+
+export default connect(mapStateToProps)(ProductsArea);

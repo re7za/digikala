@@ -12,12 +12,13 @@ function SearchInput(props) {
   const [typingTimeout, setTypingTimeout] = useState();
 
   const handleChange = (e) => {
-    console.log("internal");
     clearTimeout(typingTimeout);
+
+    const inputVal = e.target.value.trim();
 
     setTypingTimeout(
       setTimeout(() => {
-        handleonChange(e.target.value.trim());
+        if (inputVal !== "") handleonChange(inputVal);
       }, TYPING_DONE_TIME)
     );
   };
