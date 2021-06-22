@@ -1,3 +1,25 @@
+@import "../../_variables.scss";
+
 .productsGrid {
   background-color: #fff;
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    border: 1px solid $shadow-light;
+    @media screen and (min-width: $sm) {
+      grid-template-columns: 1fr 1fr;
+    }
+    @media screen and (min-width: $md) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+    @media screen and (min-width: $lg) {
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    @media screen and (min-width: $xl) {
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
+  }
+  .loader {
+    padding: 60px 16px;
+  }
 }

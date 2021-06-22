@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 import { productsServices } from "../../services/products.service";
+import ProductCard from "../../lib/productCard";
 import Pagination from "../../lib/pagination";
-import ProductsGrid from "../productsGrid";
 import Loader from "../../lib/loader";
 
 import style from "../../assets/styles/components/productsArea/style.module.scss";
@@ -33,20 +33,30 @@ const ProductsArea = () => {
 
   return (
     <div>
-      {!isLoading ? (
-        <div className={style.productsGrid}>
-          <ProductsGrid products={products} />
-          {totalPage && (
-            <Pagination
-              totalPages={totalPage}
-              currentPage={currentPage}
-              onPageChanged={handlePageChange}
-            />
-          )}
-        </div>
-      ) : (
-        <Loader />
-      )}
+      <div className={style.productsGrid}>
+        {!isLoading ? (
+          <>
+            <div className={style.grid}>
+              {products?.map((product) => (
+                <React.Fragment key={product.id}>
+                  <ProductCard {...product} />
+                </React.Fragment>
+              ))}
+            </div>
+            {totalPage && (
+              <Pagination
+                totalPages={totalPage}
+                currentPage={currentPage}
+                onPageChanged={handlePageChange}
+              />
+            )}
+          </>
+        ) : (
+          <div className={style.loader}>
+            <Loader />
+          </div>
+        )}
+      </div>
     </div>
   );
 };
