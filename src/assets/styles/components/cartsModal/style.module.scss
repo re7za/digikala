@@ -47,6 +47,13 @@
       border-top: 1px solid $shadow;
       border-bottom: 1px solid $shadow;
     }
+    .cartsBoxLastRow {
+      padding: 10px 16px;
+      text-align: center;
+      .cartsPageLink {
+        color: $secondary;
+      }
+    }
     .emptyList {
       text-align: center;
       padding: 10px 16px;

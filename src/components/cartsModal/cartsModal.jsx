@@ -80,7 +80,7 @@ const CartsModal = (props) => {
             )}
           </div>
           {cartsLen > 3 && (
-            <div className={style.cartsBoxFirstRow}>
+            <div className={style.cartsBoxLastRow}>
               <Link to="/carts" className={style.cartsPageLink}>
                 مشاهده همه
               </Link>
