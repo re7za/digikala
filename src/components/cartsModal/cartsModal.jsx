@@ -46,6 +46,16 @@ const CartsModal = (props) => {
     );
   };
 
+  const CounterBadge = () => {
+    return (
+      cartsLen !== 0 && (
+        <span className={style.cartsLengthBadge}>
+          <Badge color="red">{cartsLen}</Badge>
+        </span>
+      )
+    );
+  };
+
   return (
     <span
       className={style.cartsBtn}
@@ -55,11 +65,7 @@ const CartsModal = (props) => {
     >
       <Link to="/carts" className={style.cartsLink}>
         <FontAwesomeIcon icon={faShoppingCart} />
-        {cartsLen !== 0 && (
-          <span className={style.cartsLengthBadge}>
-            <Badge color="red">{cartsLen}</Badge>
-          </span>
-        )}
+        <CounterBadge />
       </Link>
       {cartsLen !== 0 && (
         <div className={`${style.cartsBox} ${!isBoxOpen && style.displayNone}`}>
@@ -71,6 +77,7 @@ const CartsModal = (props) => {
           </div>
           <div className={style.tinyCartsBox}>
             {cartsInfo.map(
+              // only render 3 items
               (cart, i) =>
                 i < 3 && (
                   <div key={cart.id}>
