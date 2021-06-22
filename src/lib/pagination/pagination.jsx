@@ -1,10 +1,19 @@
 import React, { useState, useEffect, useMemo } from "react";
+import PropTypes from "prop-types";
 import { range } from "../../helpers/array-utils";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faAngleDoubleLeft,
+  faAngleDoubleRight,
+} from "@fortawesome/free-solid-svg-icons";
+
+import style from "../../assets/styles/lib/pagination/style.module.scss";
 
 const fetchPaginationData = (
   totalPages,
   currentPage,
-  maximumNeighbours = 4
+  maximumNeighbours = 2
 ) => {
   let minBound = Math.max(1, currentPage - maximumNeighbours);
   let maxBound = Math.min(totalPages, currentPage + maximumNeighbours);
@@ -28,24 +37,36 @@ const Pagination = ({ onPageChanged, totalPages, currentPage = 0 }) => {
   }, [selectedPage]);
 
   return (
-    <div>
+    <ul className={style.ul}>
       {!isStart && (
-        <button onClick={() => setSelectedPage(1)}>Move to start</button>
+        <li className={style.li} onClick={() => setSelectedPage(1)}>
+          <FontAwesomeIcon icon={faAngleDoubleRight} />
+        </li>
       )}
       {pages.map((pageNumber) => (
-        <button
+        <li
           key={"pagination-" + pageNumber}
+          className={`${style.li} ${
+            selectedPage === pageNumber ? style.currentLi : ""
+          }`}
           onClick={() => setSelectedPage(pageNumber)}
         >
           {pageNumber}
-          {selectedPage == pageNumber && "( selected )"}
-        </button>
+        </li>
       ))}
       {!isEnd && (
-        <button onClick={() => setSelectedPage(totalPages)}>Move to end</button>
+        <li className={style.li} onClick={() => setSelectedPage(totalPages)}>
+          <FontAwesomeIcon icon={faAngleDoubleLeft} />
+        </li>
       )}
-    </div>
+    </ul>
   );
+};
+
+Pagination.propType = {
+  totalPages: PropTypes.number,
+  currentPage: PropTypes.number,
+  maximumNeighbours: PropTypes.number,
 };
 
 export default Pagination;

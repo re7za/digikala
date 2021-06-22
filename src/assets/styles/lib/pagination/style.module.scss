@@ -1,0 +1,27 @@
+@import "../../_variables.scss";
+
+.ul {
+  display: flex;
+  list-style-type: none;
+  justify-content: center;
+  padding: 8px;
+  .li {
+    padding: 8px 14px;
+    margin: 0px 1px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 300ms;
+    font-size: 14px;
+    color: $text-light;
+    &:hover {
+      background-color: $secondary-light;
+    }
+  }
+  .currentLi {
+    background-color: $secondary;
+    color: #fff;
+    &:hover {
+      background-color: $secondary;
+    }
+  }
+}
