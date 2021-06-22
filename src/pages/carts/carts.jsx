@@ -19,7 +19,7 @@ const Carts = (props) => {
       {cartsLen ? (
         <>
           <button className={style.deleteAllBtn} onClick={handleDeleteAllCarts}>
-            پاک کردن همه
+            پاک کردن لیست خرید
           </button>
           <div className={style.grid}>
             {cartsInfo.map((cart) => (
