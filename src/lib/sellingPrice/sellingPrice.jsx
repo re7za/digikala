@@ -9,7 +9,7 @@ const SellingPrice = (props) => {
   return (
     <div className={style.sellingPriceBox}>
       <span className={style.sellingPrice}>
-        {sellingPrice.toLocaleString("en-US")}
+        {(sellingPrice / 10).toLocaleString("en-US")}
       </span>
       <span> تــــومان</span>
     </div>

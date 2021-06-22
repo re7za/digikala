@@ -16,7 +16,7 @@ const Discount = (props) => {
         <>
           <Badge color="red">{discount}%</Badge>
           <span className={style.rrpPrice}>
-            {rrpPrice.toLocaleString("en-US")}
+            {(rrpPrice / 10).toLocaleString("en-US")}
           </span>
         </>
       )}
