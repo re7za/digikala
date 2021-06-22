@@ -31,21 +31,6 @@
         flex-grow: 1;
         color: $text-light;
       }
-      .removeBtn {
-        padding: 4px 8px;
-        background-color: transparent;
-        border: none;
-        outline: none;
-        transition: 200ms;
-        width: max-content;
-        color: $text-light;
-        &:hover {
-          color: $text;
-        }
-        &:active {
-          color: $text-light;
-        }
-      }
     }
   }
 }

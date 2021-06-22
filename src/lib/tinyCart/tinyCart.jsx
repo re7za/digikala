@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
+import TextButton from "../textButton";
 import { handleTextLength } from "../../helpers/text-utils";
 import { productsServices } from "../../services/products.service";
 import { removeProductFromCarts } from "../../redux/actions/carts.actions";
@@ -46,12 +47,7 @@ const TinyCart = (props) => {
             </Link>
             <div className={style.secondRow}>
               <div className={style.quantity}>{cart?.quantity} عدد</div>
-              <button
-                className={style.removeBtn}
-                onClick={handleRemoveFromCarts}
-              >
-                حذف
-              </button>
+              <TextButton onClick={handleRemoveFromCarts}>حذف</TextButton>
             </div>
           </div>
         </div>
