@@ -13,8 +13,7 @@ import MiniPurchaseButton from "../miniPurchaseButton";
 import style from "../../assets/styles/lib/productCard/style.module.scss";
 
 const ProductCard = (props) => {
-  const { dispatch, cartsInfo, id, title, status, images, price } = props;
-  const cart = cartsInfo.find((cart) => Number(cart.id) === Number(id));
+  const { dispatch, cartQuantity, id, title, status, images, price } = props;
 
   const handleAddToCarts = (event) => {
     event.stopPropagation();
@@ -44,7 +43,7 @@ const ProductCard = (props) => {
             <MiniPurchaseButton
               isDisabled={status !== "marketable"}
               onClick={handleAddToCarts}
-              quantity={cart?.quantity}
+              quantity={cartQuantity}
             />
           </div>
         </div>
@@ -67,9 +66,12 @@ ProductCard.defaultProps = {
   },
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, props) => {
   return {
-    cartsInfo: state.cartsReducer.cartsInfo,
+    // To avoid additional rerenderings
+    cartQuantity: state.cartsReducer.cartsInfo.find(
+      (cart) => Number(cart.id) === Number(props.id)
+    )?.quantity,
   };
 };
 
