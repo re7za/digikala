@@ -26,42 +26,44 @@ const ProductCard = (props) => {
   };
 
   return (
-    <div className={style.card}>
-      <Link to={`/product-details/${id}`}>
-        <div className={style.imageBox}>
-          <img className={style.image} src={images.main} alt="کالا" />
-        </div>
-      </Link>
-      <div className={style.info}>
+    <div className={style.cardContainer}>
+      <div className={style.card}>
         <Link to={`/product-details/${id}`}>
-          <div className={style.title}>{handleTextLength(title, 40)}</div>
+          <div className={style.imageBox}>
+            <img className={style.image} src={images.main} alt="کالا" />
+          </div>
         </Link>
-        <div className={style.purchase}>
-          <Link to={`/product-details/${id}`} className={style.price}>
-            {discount !== 0 && (
-              <div>
-                <Badge color="red">{discount}%</Badge>
-                <span className={style.rrpPrice}>
-                  {price.rrp_price.toLocaleString("en-US")}
-                </span>
-              </div>
-            )}
-            <div className={style.sellingPriceBox}>
-              <span className={style.sellingPrice}>
-                {price.selling_price.toLocaleString("en-US")}
-              </span>
-              <span> تــــومان</span>
-            </div>
+        <div className={style.info}>
+          <Link to={`/product-details/${id}`}>
+            <div className={style.title}>{handleTextLength(title, 40)}</div>
           </Link>
-          <div>
-            {status === "marketable" && (
-              <QuickAddButton onClick={handleAddToCarts}>
-                <FontAwesomeIcon icon={faCartPlus} />
-              </QuickAddButton>
-            )}
-            {cart?.quantity && (
-              <div className={style.quantity}>{cart.quantity} عدد</div>
-            )}
+          <div className={style.purchase}>
+            <Link to={`/product-details/${id}`} className={style.price}>
+              {discount !== 0 && (
+                <div>
+                  <Badge color="red">{discount}%</Badge>
+                  <span className={style.rrpPrice}>
+                    {price.rrp_price.toLocaleString("en-US")}
+                  </span>
+                </div>
+              )}
+              <div className={style.sellingPriceBox}>
+                <span className={style.sellingPrice}>
+                  {price.selling_price.toLocaleString("en-US")}
+                </span>
+                <span> تــــومان</span>
+              </div>
+            </Link>
+            <div>
+              {status === "marketable" && (
+                <QuickAddButton onClick={handleAddToCarts}>
+                  <FontAwesomeIcon icon={faCartPlus} />
+                </QuickAddButton>
+              )}
+              {cart?.quantity && (
+                <div className={style.quantity}>{cart.quantity} عدد</div>
+              )}
+            </div>
           </div>
         </div>
       </div>

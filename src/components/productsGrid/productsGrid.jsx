@@ -10,9 +10,9 @@ export const ProductsGrid = (props) => {
   return (
     <div className={style.grid}>
       {products?.map((product) => (
-        <div key={product.id}>
+        <React.Fragment key={product.id}>
           <ProductCard {...product} />
-        </div>
+        </React.Fragment>
       ))}
     </div>
   );
