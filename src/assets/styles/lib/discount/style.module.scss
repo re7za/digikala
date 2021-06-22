@@ -1,0 +1,11 @@
+@import "../../_variables.scss";
+
+.rrpPrice {
+  color: $text-light;
+  font-size: 0.85rem;
+  text-decoration: line-through;
+  margin-left: 4px;
+  @media screen and (min-width: $sm) {
+    font-size: 0.9rem;
+  }
+}

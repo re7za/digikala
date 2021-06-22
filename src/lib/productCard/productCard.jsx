@@ -8,17 +8,15 @@ import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 
 import { addProductToCarts } from "../../redux/actions/carts.actions";
 import { handleTextLength } from "../../helpers/text-utils";
-import Badge from "../badge";
+
+import Discount from "../discount";
 import QuickAddButton from "../quickAddButton";
+
 import style from "../../assets/styles/lib/productCard/style.module.scss";
 
 const ProductCard = (props) => {
   const { dispatch, cartsInfo, id, title, status, images, price } = props;
   const cart = cartsInfo.find((cart) => Number(cart.id) === Number(id));
-
-  const discount = Math.round(
-    100 - (price.selling_price / price.rrp_price) * 100
-  );
 
   const handleAddToCarts = (event) => {
     event.stopPropagation();
@@ -39,14 +37,10 @@ const ProductCard = (props) => {
           </Link>
           <div className={style.purchase}>
             <Link to={`/product-details/${id}`} className={style.price}>
-              {discount !== 0 && (
-                <div>
-                  <Badge color="red">{discount}%</Badge>
-                  <span className={style.rrpPrice}>
-                    {price.rrp_price.toLocaleString("en-US")}
-                  </span>
-                </div>
-              )}
+              <Discount
+                rrp_price={price.rrp_price}
+                selling_price={price.selling_price}
+              />
               <div className={style.sellingPriceBox}>
                 <span className={style.sellingPrice}>
                   {price.selling_price.toLocaleString("en-US")}
