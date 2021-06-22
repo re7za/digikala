@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 
 import TinyCart from "../../lib/tinyCart";
-import { Badge } from "../../lib/badge";
+import Badge from "../../lib/badge";
 import style from "../../assets/styles/components/cartsModal/style.module.scss";
 
 const BoX_OPEN_DELAY = 200;

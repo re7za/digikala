@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 
 import { productsServices } from "../../services/products.service";
 import Pagination from "../../lib/pagination";
-import { ProductsGrid } from "../productsGrid";
+import ProductsGrid from "../productsGrid";
 import Loader from "../../lib/loader";
 
 import style from "../../assets/styles/components/productsArea/style.module.scss";
 
-export const ProductsArea = () => {
+const ProductsArea = () => {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
@@ -50,3 +50,5 @@ export const ProductsArea = () => {
     </div>
   );
 };
+
+export default ProductsArea;

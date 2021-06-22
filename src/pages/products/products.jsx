@@ -1,10 +1,10 @@
 import React from "react";
 
-import { ProductsArea } from "../../components/productsArea";
+import ProductsArea from "../../components/productsArea";
 
 import style from "../../assets/styles/pages/products/style.module.scss";
 
-export const Products = () => {
+const Products = () => {
   return (
     <div className={style.container}>
       {/* <aside className={style.aside}>aside</aside> */}
@@ -14,3 +14,5 @@ export const Products = () => {
     </div>
   );
 };
+
+export default Products;

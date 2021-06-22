@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import ProductCard from "../../lib/productCard";
 import style from "../../assets/styles/components/productsGrid/style.module.scss";
 
-export const ProductsGrid = (props) => {
+const ProductsGrid = (props) => {
   const { products } = props;
 
   return (
@@ -21,3 +21,5 @@ export const ProductsGrid = (props) => {
 ProductsGrid.propTypes = {
   products: PropTypes.array,
 };
+
+export default ProductsGrid;

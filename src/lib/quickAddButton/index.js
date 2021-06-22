@@ -1,1 +1,1 @@
-export * from "./quickAddButton";
+export { default } from "./quickAddButton";

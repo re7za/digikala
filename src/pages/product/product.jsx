@@ -11,8 +11,8 @@ import {
 } from "../../redux/actions/carts.actions";
 import { productsServices } from "../../services/products.service";
 
-import { Badge } from "../../lib/badge";
-import { Button } from "../../lib/‌‌‌button";
+import Badge from "../../lib/badge";
+import Button from "../../lib/‌‌‌button";
 import CounterButtons from "../../lib/counterButtons";
 import Loader from "../../lib/loader";
 

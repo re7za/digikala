@@ -2,7 +2,7 @@ import React from "react";
 
 import style from "../../assets/styles/lib/button/style.module.scss";
 
-export const Button = (props) => {
+const Button = (props) => {
   const { children, disabled, ...otherProps } = props;
 
   return (
@@ -15,3 +15,4 @@ export const Button = (props) => {
     </button>
   );
 };
+export default Button;

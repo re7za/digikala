@@ -1,1 +1,1 @@
-export * from "./productsArea";
+export { default } from "./productsArea";
